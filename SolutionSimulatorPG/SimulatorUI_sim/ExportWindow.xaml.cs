@@ -19,7 +19,7 @@ using SimulatorBL.Exceptions;
 using SimulatorBL.Factories;
 using SimulatorBL.Interfaces;
 using SimulatorBL.Manager;
-using SimulatorBL.Services.Export;
+using SimulatorBL.Manager.Export;
 
 namespace SimulatorUI_sim
 {

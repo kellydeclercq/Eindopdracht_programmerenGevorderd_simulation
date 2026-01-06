@@ -10,7 +10,7 @@ using SimulatorBL.DTO;
 using SimulatorBL.Exceptions;
 using SimulatorBL.Interfaces;
 
-namespace SimulatorBL.Services.Export
+namespace SimulatorBL.Manager.Export
 {
     public class JsonExportService : IExportService
     {

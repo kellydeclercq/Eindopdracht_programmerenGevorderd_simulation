@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SimulatorBL.Enum;
 using SimulatorBL.Exceptions;
 using SimulatorBL.Interfaces;
-using SimulatorBL.Services.Export;
+using SimulatorBL.Manager.Export;
 
 namespace SimulatorBL.Factories
 {

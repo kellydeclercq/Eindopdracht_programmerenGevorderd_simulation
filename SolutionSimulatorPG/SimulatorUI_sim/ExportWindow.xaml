@@ -1,0 +1,35 @@
+﻿<Window x:Class="SimulatorUI_sim.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulatorUI_sim"
+        mc:Ignorable="d"
+        Title="Export Window" Height="250" Width="400">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="File Type: " VerticalAlignment="Center" Margin="0,0,10,10" />
+
+        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,10" Name="ComboBox_FileType" SelectionChanged="SelectionChanged_Filetype"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Separator:" VerticalAlignment="Center" Margin="0,0,10,10" Name="Textblock_seperator"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" 
+             Text="{Binding TextSeparator}" 
+             VerticalAlignment="Center" Margin="0,0,0,10"
+             Width="50" MinHeight="23" HorizontalAlignment="Left" Name="Textbox_seperator"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Content="Export All information (2 files)"  IsChecked="{Binding IncludeFullInformation}" VerticalAlignment="Center" Name="Checkbox_fullInfo"/>
+        <Button Content="Export" Grid.Row="3" Grid.Column="1" Margin="5" Click="Click_buttonExport"></Button>
+
+    </Grid>
+</Window>

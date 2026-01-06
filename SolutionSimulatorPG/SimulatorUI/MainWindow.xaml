@@ -1,0 +1,62 @@
+﻿<Window x:Class="SimulatorUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulatorUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock  Grid.Column="1" Grid.Row="0" Margin="5" Text="Texttype"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="Name type" x:Name="TextBlock_NameType"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5" Text="Country" x:Name="TextBlock_Country"></TextBlock>
+
+        <ComboBox Margin="5" Grid.Column="2" Grid.Row="0" x:Name="Combobox_type" SelectedIndex="0" SelectionChanged="SelectionChanged_FileType" ></ComboBox>
+        <ComboBox Margin="5" Grid.Column="2" Grid.Row="1" x:Name="Combobox_nametype" SelectedIndex="0" SelectionChanged="Data_changed_NameType" ></ComboBox>
+        <ComboBox Margin="5" Grid.Column="2" Grid.Row="2" x:Name="Combobox_Country" IsEditable="True" Foreground="Gray" 
+                  GotFocus="Combobox_Country_GotFocus"                 
+                  LostFocus="Combobox_Country_LostFocus"></ComboBox>
+        
+        <Button  Content="Choose file" Margin="5" Padding="2" Grid.Column="1" Grid.Row="3" Name="TextBox_name" Click="Click_ButtonGetPath"></Button>
+        <TextBox Grid.Row="3" Grid.Column="2" Name="PathTextBox" IsReadOnly="True" Margin="5"/>
+
+        <Button Margin="5" Content="Upload File" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Click="Click_ButtonUploadFile"></Button>
+
+        <TextBlock  Grid.Column="3" Grid.Row="0" Margin="5" Text="Name column" Name="Textblock_name"></TextBlock>
+        <TextBox PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="4" Name="TextBox_NameColumn"  Margin="5"/>
+
+        <TextBlock  Grid.Column="3" Grid.Row="1" Margin="5" Text="Frequency column" Name="textblock_frequency" ></TextBlock>
+        <TextBox PreviewTextInput="NumberValidationTextBox" Grid.Row="1" Grid.Column="4" Name="TextBox_frequencyColumn"  Margin="5"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="2" Margin="5" Text="Lines to skip" x:Name="TextBlock_LinesToSkip"></TextBlock>
+        <TextBox PreviewTextInput="NumberValidationTextBox" Grid.Row="2" Grid.Column="4" Name="TextBox_linesToSkip"  Margin="5"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="3" Margin="5" Text="Seperator" x:Name="TextBlock_Separator"></TextBlock>
+        <ComboBox Margin="5" Grid.Column="4" Grid.Row="3" x:Name="ComboBox_character" SelectedIndex="0" ></ComboBox>
+
+        <TextBlock  Grid.Column="3" Grid.Row="4" Margin="5" Text="Gender" Name="Textblock_gender"  ></TextBlock>
+        <ComboBox Margin="5" Grid.Column="5" Grid.Row="4" x:Name="ComboBox_Gender" SelectedIndex="2" ></ComboBox>
+           
+        <TextBox Margin="5" Grid.Column="5" Grid.Row="4" x:Name="Textbox_higwayTypeColumn" Visibility="Collapsed" ></TextBox>
+
+
+
+    </Grid>
+</Window>

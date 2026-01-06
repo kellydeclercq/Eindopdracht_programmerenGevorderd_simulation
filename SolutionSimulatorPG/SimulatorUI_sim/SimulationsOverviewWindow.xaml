@@ -1,0 +1,19 @@
+﻿<Window x:Class="SimulatorUI_sim.SimulationsOverviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulatorUI_sim"
+        mc:Ignorable="d"
+        Title="Overview simulations" Height="500" Width="900">
+    <Grid>
+        <DataGrid Margin="5" Name="Datagrid_overviewSimulations" IsReadOnly="True" MouseDoubleClick="Click_Menuitem_ViewInfoSimulation" SelectionMode="Single">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="View" Click="Click_Menuitem_ViewInfoSimulation"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+    </Grid>
+</Window>

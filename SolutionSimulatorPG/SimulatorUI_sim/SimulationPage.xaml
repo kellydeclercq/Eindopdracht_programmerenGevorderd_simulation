@@ -1,0 +1,75 @@
+﻿<Window x:Class="SimulatorUI_sim.SimulationPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulatorUI_sim" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="SimulationPage" Height="400" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="5" Text="Client name" Grid.Row="0" Grid.Column="0"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_clientName" Grid.Row="0" Grid.Column="1"></TextBox>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Margin="5" Text="Year      " FontWeight="Bold"></TextBlock>
+            <TextBox Margin="5" VerticalAlignment="Bottom" Name="Textbox_year" IsReadOnly="True" MinWidth="150" MaxHeight="20" ></TextBox>
+        </StackPanel>
+        
+        <Button Height="30" VerticalAlignment="Top" Padding="3" Margin="5" Name="Choose_datasetYear" Content="Choose dataset" Grid.Row="1" Grid.Column="0" Click="Button_clickChooseDataset"></Button>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="5">
+            <TextBlock Margin="5" Text="Country" FontWeight="Bold"></TextBlock>
+            <TextBox Margin="5"  Name="Textbox_country" MinWidth="150" MaxHeight="20" IsReadOnly="True" TextChanged="Country_changed"></TextBox>
+        </StackPanel>
+        
+        <TextBlock Margin="5" Text="Amount" Grid.Row="3" Grid.Column="0"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_amount" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBlock Margin="5" Text="Minimum age" Grid.Row="4" Grid.Column="0"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_minAge" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBlock Margin="5" Text="Maximum age" Grid.Row="5" Grid.Column="0"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_maxAge" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>
+
+        <TextBlock Margin="5" Text="Select municipalities" Grid.Row="0" Grid.Column="2"></TextBlock>
+        <ComboBox Margin="5" Name="ComboBox_selMunicipality" Grid.Row="0" Grid.Column="3"></ComboBox>
+        
+        <TextBlock Margin="5" Text="Percentage" Grid.Row="1" Grid.Column="2"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal"  Margin="5">
+            <TextBox Margin="5" Name="TextBox_percentage"  PreviewTextInput="NumberValidationTextBox" MinWidth="50" MinHeight="20"></TextBox>
+            <Button Content="select" MinHeight="20" MinWidth="90" Click="Button_Select_muniPercentage"></Button>
+            <TextBlock x:Name="Textblock_totalPercentage" Margin="5"></TextBlock>
+        </StackPanel>
+
+        <DataGrid x:Name="DataGrid_municipalityPerc" Grid.Row="2" Grid.Column="3" Margin="5" SelectionMode="Single" IsReadOnly="True">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Click="Click_Deletemunicipality"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+        <TextBlock Margin="5" Text="Max house number" Grid.Row="3" Grid.Column="2"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_maxHouseNr" Grid.Row="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBlock Margin="5" Text="Percentage letters nr" Grid.Row="4" Grid.Column="2"></TextBlock>
+        <TextBox Margin="5" Name="TextBox_percLetterInNr" Grid.Row="4" Grid.Column="3" PreviewTextInput="NumberValidationTextBox"></TextBox>
+
+        <Button Content="Start simulation" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Click="Click_startSimulation"></Button>
+
+
+
+    </Grid>
+</Window>

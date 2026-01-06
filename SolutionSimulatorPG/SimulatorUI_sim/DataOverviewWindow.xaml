@@ -1,0 +1,20 @@
+﻿<Window x:Class="SimulatorUI_sim.DataOverviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulatorUI_sim"
+        mc:Ignorable="d"
+        Title="DataOverviewWindow" Height="550" Width="900">
+    <Grid>
+        <DataGrid Margin="10" Name="Datagrid_data" IsReadOnly="true" AutoGenerateColumns="True" 
+                  AutoGeneratingColumn="DataGrid_data_AutoGeneratingColumn" BorderThickness="5" BorderBrush="AliceBlue" MouseDoubleClick="MenuItem_selectsim">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="select for simulation" Click="MenuItem_selectsim"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+    </Grid>
+</Window>

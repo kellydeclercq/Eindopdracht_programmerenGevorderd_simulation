@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SimulatorBL.Enum;
 using SimulatorBL.Exceptions;
-using SimulatorBL.Export;
 using SimulatorBL.Factories;
+using SimulatorBL.Services.Export;
 
 namespace UnitTestSimulationSolution
 {

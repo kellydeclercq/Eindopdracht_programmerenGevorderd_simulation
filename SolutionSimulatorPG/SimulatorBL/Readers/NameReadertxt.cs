@@ -15,8 +15,7 @@ namespace SimulatorBL.Readers
 {
     public class NameReadertxt : IFileDataReader
     {
-
-                 
+            
         public NameReadertxt()
         {
         }

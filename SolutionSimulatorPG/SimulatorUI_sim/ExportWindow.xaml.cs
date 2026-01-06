@@ -16,10 +16,10 @@ using SimulatorBL.Domain;
 using SimulatorBL.DTO;
 using SimulatorBL.Enum;
 using SimulatorBL.Exceptions;
-using SimulatorBL.Export;
 using SimulatorBL.Factories;
 using SimulatorBL.Interfaces;
 using SimulatorBL.Manager;
+using SimulatorBL.Services.Export;
 
 namespace SimulatorUI_sim
 {
@@ -58,9 +58,9 @@ namespace SimulatorUI_sim
                 IExportService service = ExportServiceFactory.GetExportService(_config.FileType);
 
                 List<Customer>? customers = null;
-                if (_config.IncludeFullInformation) customers = _dataRequestService.GetSpecificCustomers(_simulationInformationDTO.Id);
+                if (_config.IncludeFullInformation || _config.FileType == FileType.Json) customers = _dataRequestService.GetSpecificCustomers(_simulationInformationDTO.Id);
                 bool result = service.Export(_simulationInformationDTO, _config, customers);
-                if (result) { MessageBox.Show("Export succesfull!"); }
+                if (result) { MessageBox.Show("Export succesfull!"); Close(); }
             }
             catch {MessageBox.Show("Error", "Unable to export simulation", MessageBoxButton.OK, MessageBoxImage.Warning); }
 

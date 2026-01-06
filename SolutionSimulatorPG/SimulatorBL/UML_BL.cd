@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SimulatorBL.Domain.AddressRecord">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAABAAAgAAAAAAAAAIAAIAAAAIAAAAAAAA=</HashCode>
+      <FileName>DTO_reader\AddressRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.Domain.Customer">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABACIAAAAAAQAAEIAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>DTO_reader\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.Domain.NameRecord">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAAAACEAAAAAAQAAIKAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTO_reader\NameRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.Domain.Record">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTO_reader\Record.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.DTO.SimulationInformation">
+    <Position X="6.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QBACIAAADAQEQAAAFUBAAQIIBAIABAEQRAAAAgCgQCA=</HashCode>
+      <FileName>DTO\SimulationInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.DTO.MetaDataImportDTO">
+    <Position X="1.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAACAAgAAAAIAACACAQAAAAAAAAA=</HashCode>
+      <FileName>DTO\MetaDataImportDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.Readers.AddressReadertxt">
+    <Position X="13.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAQAAAAAAAAAAAAAAAggAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\AddressReadertxt.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Readers.AllRecordsReaderJson">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\AllRecordsReaderJson.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Readers.NameReaderJson">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\NameReaderJson.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Readers.NameReadertxt">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\NameReadertxt.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Manager.SimulatorService">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAQABEAAAAAACAQAAAAAAAAAAEAAACAIE=</HashCode>
+      <FileName>Services\SimulatorService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_requestService" />
+      <Field Name="_writer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Manager.DataRequestService">
+    <Position X="14" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAYAAACAAAAIIAAAAAAgAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Services\DataRequestService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_requestRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SimulatorBL.Manager.ReaderService">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <AssociationLine Name="_reader" Type="SimulatorBL.Interfaces.IFileDataReader" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="0.5" />
+        <Point X="16.75" Y="0.26" />
+        <Point X="12.625" Y="0.26" />
+        <Point X="12.625" Y="0.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAQAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ReaderService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_reader" />
+      <Field Name="_repo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SimulatorBL.Services.Export.JsonExportService">
+    <Position X="18.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Export\JsonExportService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Services.Export.TextExportService">
+    <Position X="18.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAgAgAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Export\TextExportService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorBL.Services.Export.ExportConfiguration">
+    <Position X="16.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Services\Export\ExportConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SimulatorBL.Interfaces.IFileDataReader">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFileDataReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SimulatorBL.Interfaces.ICustomerGenerator">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICustomerGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SimulatorBL.Interfaces.IDataRequestRepo">
+    <Position X="13.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAYAAACAAAAIIAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Interfaces\IDataRequestRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SimulatorBL.Interfaces.IRawDataWriter">
+    <Position X="16.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IRawDataWriter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SimulatorBL.Interfaces.IExportService">
+    <Position X="16.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IExportService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SimulatorBL.Interfaces.IWriterRepo">
+    <Position X="9.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IWriterRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

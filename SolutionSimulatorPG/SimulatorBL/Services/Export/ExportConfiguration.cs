@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimulatorBL.Enum;
 
-namespace SimulatorBL.Export
+namespace SimulatorBL.Services.Export
 {
     public class ExportConfiguration
     {

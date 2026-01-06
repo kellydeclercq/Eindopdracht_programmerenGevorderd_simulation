@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SimulatorUI_sim.ExportWindow">
+    <Position X="13" Y="0.75" Width="2.5" />
+    <AssociationLine Name="_config" Type="SimulatorBL.Services.Export.ExportConfiguration" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="2.438" />
+        <Point X="16.125" Y="2.438" />
+        <Point X="16.125" Y="2.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.018" Y="0.12" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_simulationInformationDTO" Type="SimulatorBL.DTO.SimulationInformation" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="2.56" />
+        <Point X="14.5" Y="9.906" />
+        <Point X="3.097" Y="9.906" />
+        <Point X="3.097" Y="7.94" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAECAAACAAAAAAAAAACAAAAAAAAAABAAA=</HashCode>
+      <FileName>ExportWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_config" />
+      <Field Name="_dataRequestService" />
+      <Field Name="_simulationInformationDTO" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.MainWindow">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <AssociationLine Name="_service" Type="SimulatorBL.Manager.DataRequestService" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="0.5" />
+        <Point X="5.25" Y="0.26" />
+        <Point X="12.406" Y="0.26" />
+        <Point X="12.406" Y="3.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAgAAAAAQACAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_service" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_overviewSimulations" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.SimulationFullStatisticsWindow">
+    <Position X="9.5" Y="0.75" Width="2.5" />
+    <AssociationLine Name="_simulationInformationDTO" Type="SimulatorBL.DTO.SimulationInformation" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="1.463" />
+        <Point X="9.16" Y="1.463" />
+        <Point X="9.16" Y="3.59" />
+        <Point X="4.24" Y="3.59" />
+        <Point X="4.24" Y="3.625" />
+        <Point X="4" Y="3.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAECAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimulationFullStatisticsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dataRequestService" />
+      <Field Name="_simulationInformationDTO" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.SimulationPage">
+    <Position X="6.25" Y="3.75" Width="2.75" />
+    <AssociationLine Name="_municipalitiesPercentages" Type="SimulatorUI_sim.DomainUI.MunicipalitySelection" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="4.206" />
+        <Point X="9.167" Y="4.206" />
+        <Point X="9.167" Y="6.188" />
+        <Point X="11.292" Y="6.187" Type="JumpStart" />
+        <Point X="11.458" Y="6.188" Type="JumpEnd" />
+        <Point X="11.5" Y="6.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_requestService" Type="SimulatorBL.Manager.DataRequestService" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="3.875" />
+        <Point X="10.5" Y="3.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_service" Type="SimulatorBL.Interfaces.ICustomerGenerator" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.438" Y="6.521" />
+        <Point X="8.438" Y="7.947" />
+        <Point X="10.052" Y="7.947" />
+        <Point X="10.052" Y="7.853" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_data" Type="SimulatorBL.DTO.MetaDataImportDTO" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.125" Y="6.521" />
+        <Point X="7.125" Y="7.125" />
+        <Point X="6" Y="7.125" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAhAAAAAAQACAAQAEAEAAAAAAAQAAAAAACgAg=</HashCode>
+      <FileName>SimulationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_requestService" />
+      <Field Name="_service" />
+      <Field Name="_data" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_municipalitiesPercentages" />
+      <Field Name="_simulationInformationDTOs" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.SimulationsOverviewWindow">
+    <Position X="6.25" Y="0.75" Width="2.75" />
+    <AssociationLine Name="_dataRequestService" Type="SimulatorBL.Manager.DataRequestService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.625" Y="2.367" />
+        <Point X="7.625" Y="3.5" />
+        <Point X="9.077" Y="3.5" Type="JumpStart" />
+        <Point X="9.243" Y="3.5" Type="JumpEnd" />
+        <Point X="10.5" Y="3.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_sourceCollection" Type="SimulatorBL.DTO.SimulationInformation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.906" Y="2.367" />
+        <Point X="6.906" Y="2.742" />
+        <Point X="3.708" Y="2.742" Type="JumpStart" />
+        <Point X="3.542" Y="2.742" Type="JumpEnd" />
+        <Point X="1.812" Y="2.742" />
+        <Point X="1.812" Y="3.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEABACAAAAAAAAAAAAAAAAAAAAAKAAAA=</HashCode>
+      <FileName>SimulationsOverviewWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dataRequestService" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_sourceCollection" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.DataOverviewWindow">
+    <Position X="6" Y="8" Width="3" />
+    <AssociationLine Name="_service" Type="SimulatorBL.Manager.DataRequestService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="9.188" />
+        <Point X="11.375" Y="9.188" />
+        <Point X="11.375" Y="5.507" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAQAAAAAAAAACAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>DataOverviewWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dataImportDTO" />
+      <Field Name="_service" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SimulatorUI_sim.DomainUI.MunicipalitySelection">
+    <Position X="11.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAAgAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainUI\MunicipalitySelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimulatorBL.Manager.DataRequestService">
+    <Position X="10.5" Y="3.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SimulatorBL.DTO.SimulationInformation">
+    <Position X="1.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SimulatorBL.DTO.MetaDataImportDTO">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SimulatorBL.Services.Export.ExportConfiguration">
+    <Position X="14.75" Y="2.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="SimulatorBL.Interfaces.ICustomerGenerator">
+    <Position X="9.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

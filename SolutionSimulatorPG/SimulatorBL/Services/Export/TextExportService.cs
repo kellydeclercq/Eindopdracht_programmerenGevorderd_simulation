@@ -8,7 +8,7 @@ using SimulatorBL.DTO;
 using SimulatorBL.Exceptions;
 using SimulatorBL.Interfaces;
 
-namespace SimulatorBL.Export
+namespace SimulatorBL.Services.Export
 {
     public class TextExportService : IExportService
     {
@@ -23,39 +23,40 @@ namespace SimulatorBL.Export
             string targetDirectory;
             string fileNameNoExt;
 
-            // is it a directory: make new file
+            // determine directory + filename
             if (Directory.Exists(config.Path))
             {
                 targetDirectory = config.Path;
                 fileNameNoExt = $"Simulation_{stats.Id}";
             }
-            else // we do have a file 
+            else
             {
                 targetDirectory = Path.GetDirectoryName(config.Path);
+                if (string.IsNullOrEmpty(targetDirectory)) targetDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 fileNameNoExt = Path.GetFileNameWithoutExtension(config.Path);
             }
 
-            // does directory exist?
             if (!Directory.Exists(targetDirectory))
             {
                 throw new ExportException($"Directory not found: {targetDirectory}");
             }
 
             try
-            {              
+            {
+                // Haal de content op (nu inclusief dictionaries)
+                string summaryContent = GetStatsCsvContent(stats, separator);
+
                 if (config.IncludeFullInformation)
                 {
-                    // File 1: Summary
+                    // Summary (Stats + Dictionaries)
                     string summaryPath = Path.Combine(targetDirectory, $"{fileNameNoExt}_Summary{extension}");
-                    string summaryContent = GetStatsCsvContent(stats, separator);
                     File.WriteAllText(summaryPath, summaryContent, new UTF8Encoding(true));
 
-                    // File 2: stats + client                    
+                    // clientlist
                     if (customers != null && customers.Count > 0)
                     {
                         string fullPath = Path.Combine(targetDirectory, $"{fileNameNoExt}_FullData{extension}");
-                        
-                        StringBuilder fullContent = new StringBuilder();                     
+                        StringBuilder fullContent = new StringBuilder();
                         fullContent.AppendLine("--- CUSTOMER DATA ---");
                         fullContent.Append(GetCustomersCsvContent(customers, separator));
                         File.WriteAllText(fullPath, fullContent.ToString(), new UTF8Encoding(true));
@@ -63,17 +64,14 @@ namespace SimulatorBL.Export
                 }
                 else
                 {
-                    // Only stats
+                    // all stats in one file
                     string finalPath = config.Path;
                     if (Directory.Exists(finalPath))
-                    {   
-                        //True: it's a map, so make own file
+                    {
                         string defaultFileName = $"Simulation_{stats.Id}_Stats.csv";
                         finalPath = Path.Combine(finalPath, defaultFileName);
                     }
-                    
-                    string content = GetStatsCsvContent(stats, separator);
-                    File.WriteAllText(finalPath, content, new UTF8Encoding(true));
+                    File.WriteAllText(finalPath, summaryContent, new UTF8Encoding(true));
                 }
 
                 return true;
@@ -83,23 +81,82 @@ namespace SimulatorBL.Export
                 return false;
             }
         }
-   
+
         private string GetStatsCsvContent(SimulationInformation stats, string sep)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Id{sep}ClientName{sep}AmountOfCustomers{sep}Country{sep}MinAge{sep}MaxAge{sep}CreationDate");
-            sb.AppendLine($"{stats.Id}{sep}{stats.ClientName}{sep}{stats.AmountOfCust}{sep}{stats.Country}{sep}{stats.MinAge}{sep}{stats.MaxAge}{sep}{stats.CreationDate}");
+
+            // GENERAL info
+            sb.AppendLine("--- GENERAL INFORMATION ---");
+            sb.AppendLine(
+                $"Id{sep}" +
+                $"ClientName{sep}" +
+                $"Year{sep}" +
+                $"Country{sep}" +
+                $"AmountOfCustomers{sep}" +
+                $"MinAge{sep}" +
+                $"MaxAge{sep}" +
+                $"AvgAgeStart{sep}" +
+                $"AvgAgeNow{sep}" +
+                $"RandomSeed{sep}" +
+                $"MaxHouseNr{sep}" +
+                $"LetterPerc{sep}" +
+                $"CreationDate"
+            );
+
+            sb.AppendLine(
+                $"{stats.Id}{sep}" +
+                $"{stats.ClientName}{sep}" +
+                $"{stats.Year}{sep}" +
+                $"{stats.Country}{sep}" +
+                $"{stats.AmountOfCust}{sep}" +
+                $"{stats.MinAge}{sep}" +
+                $"{stats.MaxAge}{sep}" +
+                $"{stats.AverageAgeOriginal}{sep}" +
+                $"{stats.AverageAgeNow}{sep}" +
+                $"{stats.RandomSeed}{sep}" +
+                $"{stats.MaxHouseNr}{sep}" +
+                $"{stats.HouseNumberLetterPercentage}{sep}" +
+                $"{stats.CreationDate}"
+            );
+
+            // ADDING DICTIONARIES  
+            // Munic + percentages
+            sb.Append(GetDictionarySection(stats.MunicipalityPerc, "Requested Distribution", "Municipality", "Percentage (%)", sep));
+
+            // clients per munic
+            sb.Append(GetDictionarySection(stats.ClientsPerMunicipality, "Actual Clients per Municipality", "Municipality", "Count", sep));
+
+            //straats per munic
+            sb.Append(GetDictionarySection(stats.StreetsPerMunicipality, "Streets Found per Municipality", "Municipality", "Streets Count", sep));
+
             return sb.ToString();
         }
 
-     
+    
+        private string GetDictionarySection(Dictionary<string, int> data, string sectionTitle, string col1Header, string col2Header, string sep)
+        {
+            if (data == null || data.Count == 0) return string.Empty;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine();
+            sb.AppendLine($"--- {sectionTitle.ToUpper()} ---"); 
+            sb.AppendLine($"{col1Header}{sep}{col2Header}");   // Headers
+
+            foreach (var kvp in data)
+            {
+                sb.AppendLine($"{kvp.Key}{sep}{kvp.Value}");
+            }
+
+            return sb.ToString();
+        }
+
         private string GetCustomersCsvContent(List<Customer> customers, string sep)
         {
             StringBuilder sb = new StringBuilder();
-
-            // Header 
             sb.AppendLine($"Name{sep}Lastname{sep}Gender{sep}Street{sep}HouseNumber{sep}Municipality{sep}Country{sep}BirthDate");
-            // Data Rows
+
             foreach (var c in customers)
             {
                 sb.AppendLine($"{c.Name}{sep}{c.Lastname}{sep}{c.Gender}{sep}{c.Street}{sep}{c.HouseNumber}{sep}{c.Municipality}{sep}{c.Country}{sep}{c.BirthDate.ToShortDateString()}");
@@ -107,7 +164,8 @@ namespace SimulatorBL.Export
 
             return sb.ToString();
         }
-
     }
-    
+
 }
+    
+

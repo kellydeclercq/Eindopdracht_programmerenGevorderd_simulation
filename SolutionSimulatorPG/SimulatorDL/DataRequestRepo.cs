@@ -288,14 +288,74 @@ namespace SimulatorDL
                     Dictionary<int, Dictionary<string, int>> streetsPerMunic = GetStreetsPerMunic(conn);         // key is simconfig, values is combination of municipality and amount of streetsPerMunic               
                     // dictionary munic
                     Dictionary<int, Dictionary<string, int>> selectedMunic = GetSelectedMunicipalities(conn);
+
+                    Dictionary<int, Dictionary<string, Dictionary<string, int>>> nameOccurences = GetNameOccurences(conn);
                     // simconfig 
-                    simulationInformation = GetSimulationInformation(clientsPerMunic, streetsPerMunic, selectedMunic, conn);
+                    simulationInformation = GetSimulationInformation(clientsPerMunic, streetsPerMunic, selectedMunic, nameOccurences, conn);
                 }
 
 
                 return simulationInformation;
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); return null; }
+        }
+
+        private Dictionary<int, Dictionary<string, Dictionary<string, int>>> GetNameOccurences(SqlConnection conn)
+        {
+            Dictionary<int, Dictionary<string, Dictionary<string, int>>> data = new();
+            string sql = @"SELECT 
+                sd.fk_simConfig AS SimId, 
+                'lastNames' AS Category, 
+                c.lastname AS Name, 
+                COUNT(*) AS Amount
+            FROM customer c
+            INNER JOIN SimulationDataset sd ON c.fk_simDataset = sd.Id
+            GROUP BY sd.fk_simConfig, c.lastname
+
+            UNION ALL
+
+            SELECT 
+                sd.fk_simConfig AS SimId, 
+                'femaleName' AS Category, 
+                c.firstname AS Name, 
+                COUNT(*) AS Amount
+            FROM customer c
+            INNER JOIN SimulationDataset sd ON c.fk_simDataset = sd.Id
+            WHERE c.gender = 'Female' 
+            GROUP BY sd.fk_simConfig, c.firstname
+
+            UNION ALL
+
+            SELECT 
+                sd.fk_simConfig AS SimId, 
+                'maleName' AS Category, 
+                c.firstname AS Name, 
+                COUNT(*) AS Amount
+            FROM customer c
+            INNER JOIN SimulationDataset sd ON c.fk_simDataset = sd.Id
+            WHERE c.gender = 'Male'
+            GROUP BY sd.fk_simConfig, c.firstname;";
+
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sql;
+
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                while (rd.Read())
+                {
+                    int simId = (int)rd["SimId"];
+                    string category = (string)rd["Category"];
+                    string name = (string)rd["Name"];
+                    int amount = (int)rd["Amount"];
+
+                    if (!data.ContainsKey(simId)) data.Add(simId, new Dictionary<string, Dictionary<string, int>>());
+                    if (!data[simId].ContainsKey(category)) data[simId].Add(category, new Dictionary<string, int>());
+                    data[simId][category].Add(name, amount);
+                }
+            }
+
+           return data;
         }
 
         private Dictionary<int, Dictionary<string,int>> GetSelectedMunicipalities(SqlConnection conn)
@@ -329,7 +389,8 @@ namespace SimulatorDL
         }
 
         private List<SimulationInformation> GetSimulationInformation(Dictionary<int, Dictionary<string, int>> clientsPerMunic, 
-            Dictionary<int, Dictionary<string, int>> streetsPerMunic, Dictionary<int, Dictionary<string, int>> selectedMunic, SqlConnection conn)
+            Dictionary<int, Dictionary<string, int>> streetsPerMunic, Dictionary<int, Dictionary<string, int>> selectedMunic, Dictionary<int, 
+                Dictionary<string, Dictionary<string, int>>> nameOccurences, SqlConnection conn)
         {
             try
             {
@@ -364,7 +425,7 @@ namespace SimulatorDL
                         int year = (int)rd["uploadYear"];
 
                         data.Add(new SimulationInformation(id, clientName, minAge, maxage, randomSeed, numberOfCust, houseNumerMax, houseNumberLetPerc
-                         , creationDate, averageAge, selecMunic , streetsPerMunic[id], clientsPerMunic[id], country, year));
+                         , creationDate, averageAge, selecMunic , streetsPerMunic[id], clientsPerMunic[id], nameOccurences[id], country, year));
                     }
                 }
                 return data;

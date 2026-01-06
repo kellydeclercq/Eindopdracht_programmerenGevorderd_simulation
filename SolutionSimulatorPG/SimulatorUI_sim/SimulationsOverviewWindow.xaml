@@ -7,7 +7,20 @@
         mc:Ignorable="d"
         Title="Overview simulations" Height="500" Width="900">
     <Grid>
-        <DataGrid Margin="5" Name="Datagrid_overviewSimulations" IsReadOnly="True" MouseDoubleClick="Click_Menuitem_ViewInfoSimulation" SelectionMode="Single">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" MinWidth="100" Orientation="Vertical" Margin="5">
+            <TextBlock Text="Search" Margin="2"></TextBlock>
+            <ComboBox x:Name="ComboBox_SelectionSearch" Margin="5" SelectedIndex="1" SelectionChanged="comoboBox_searchSelectionChanged"></ComboBox>
+            <ComboBox x:Name="combobox_country" Margin="5"></ComboBox>
+            <ComboBox x:Name="combobox_clients" Margin="4" Visibility="Collapsed"></ComboBox>
+            <Button  Margin="5" Content="Search" Click="click_buttonSearch"></Button>
+        </StackPanel>
+        
+        <DataGrid Margin="5" Grid.Column="1" Name="Datagrid_overviewSimulations" IsReadOnly="True" MouseDoubleClick="Click_Menuitem_ViewInfoSimulation" SelectionMode="Single">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="View" Click="Click_Menuitem_ViewInfoSimulation"></MenuItem>

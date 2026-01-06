@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimulatorUI_sim"
         mc:Ignorable="d"
-        Title="Simulation information" Height="450" Width="800">
+        Title="Simulation information" Height="600" Width="800">
     <Grid Background="White" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -123,6 +124,56 @@
                 </DataGrid>
             </Border>
         </Grid>
-        <Button Grid.Row="4" Grid.Column="0" Content="Export" Margin="5 5 5 -5" Click="Click_buttonExport"></Button>
+
+        <Grid Grid.Row="4" Margin="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="AliceBlue" BorderThickness="5" CornerRadius="4" Margin="5,0,5,0" Padding="0">
+                <DockPanel>
+                    <TextBlock Text="Female names" DockPanel.Dock="Top" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+
+                    <DataGrid ItemsSource="{Binding NameOccurences[femaleName]}" AutoGenerateColumns="False" IsReadOnly="True" 
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" BorderThickness="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Key}" Width="*"/>
+                            <DataGridTextColumn Header="Aantal" Binding="{Binding Value}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="AliceBlue" BorderThickness="5" CornerRadius="4" Margin="5,0,5,0" Padding="0">
+                <DockPanel>
+                    <TextBlock Text="Male names" DockPanel.Dock="Top" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+
+                    <DataGrid ItemsSource="{Binding NameOccurences[maleName]}" AutoGenerateColumns="False" IsReadOnly="True" 
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" BorderThickness="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Key}" Width="*"/>
+                            <DataGridTextColumn Header="Aantal" Binding="{Binding Value}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="2" BorderBrush="AliceBlue" BorderThickness="5" CornerRadius="4" Margin="5,0,0,0" Padding="0">
+                <DockPanel>
+                    <TextBlock Text="Last names" DockPanel.Dock="Top" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+
+                    <DataGrid ItemsSource="{Binding NameOccurences[lastNames]}" AutoGenerateColumns="False" IsReadOnly="True" 
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" BorderThickness="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Key}" Width="*"/>
+                            <DataGridTextColumn Header="Aantal" Binding="{Binding Value}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+        </Grid>
+        <Button Grid.Row="5" Grid.Column="0" Content="Export" Margin="5 5 5 -5" Click="Click_buttonExport"></Button>
     </Grid>
 </Window>

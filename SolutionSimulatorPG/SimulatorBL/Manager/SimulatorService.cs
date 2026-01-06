@@ -94,14 +94,48 @@ namespace SimulatorBL.Manager
 
             int averageAge = CalculateAverageAge(customers);
             Dictionary<string, int> clientsPerMunic = customers.GroupBy(x => x.Municipality).ToDictionary(m => m.Key, s => s.Count());
+            Dictionary<string, Dictionary<string, int>> nameOccurence = GetCategorizedNameOccurences(customers);
 
             SimulationInformation sim = new SimulationInformation(0, clientName, minAge, maxAge, _mySeed, numberOfCust, maxHousenr,
-                percentageLetters, DateTime.Now, averageAge, municipalityPerc, streetsPerMunic, clientsPerMunic, country, year);
+                percentageLetters, DateTime.Now, averageAge, municipalityPerc, streetsPerMunic, clientsPerMunic, nameOccurence, country, year);
 
             bool uploadCustomers = _writer.WriteDatasetToDB(sim, customers);
             if (simSucces && uploadCustomers) _simulationInformationDTOs.Add(sim);
 
             return simSucces && uploadCustomers; // if simulation and uploading succeeded it will return true
+        }
+
+        private Dictionary<string, Dictionary<string, int>> GetCategorizedNameOccurences(List<Customer> customers)
+        {
+            return new Dictionary<string, Dictionary<string, int>>
+            {
+ 
+                {
+                    "femaleName",
+                    customers
+                        .Where(c => c.Gender == Gender.Female)
+                        .Select(c => c.Name)
+                        .GroupBy(n => n)
+                        .ToDictionary(g => g.Key, g => g.Count())
+                },
+
+                {
+                    "maleName",
+                    customers
+                        .Where(c => c.Gender == Gender.Male)
+                        .Select(c => c.Name)
+                        .GroupBy(n => n)
+                        .ToDictionary(g => g.Key, g => g.Count())
+                },
+
+                {
+                    "lastNames",
+                    customers
+                        .Select(c => c.Lastname)
+                        .GroupBy(n => n)
+                        .ToDictionary(g => g.Key, g => g.Count())
+                }
+            };
         }
 
         private List<string> GenerateMunicipalityPool(int numberOfCust, Dictionary<string, int> municipalityPerc)

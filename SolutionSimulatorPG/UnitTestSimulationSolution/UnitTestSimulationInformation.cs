@@ -10,12 +10,14 @@ namespace UnitTestSimulationSolution
         {
             return new SimulationInformation(
                1, "Test Klant", 18, 80, 123, 100, 50, 10, DateTime.Now.AddYears(-1), // test with info of one year ago
-               30, new Dictionary<string, int> (), new Dictionary<string, int>(), new Dictionary<string, int>(), "Belgium", 2023
+               30, new Dictionary<string, int> (), new Dictionary<string, int>(), new Dictionary<string, int>(), 
+               new Dictionary<string, Dictionary<string, int>>(), "Belgium", 2023
             );
         }
 
         private SimulationInformation dummyInformation =
-             new SimulationInformation(0, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023);
+             new SimulationInformation(0, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, 
+                 new Dictionary<string, Dictionary<string, int>>(), "netherlands", 2023);
 
 
         //constructor
@@ -35,7 +37,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-100)]
         public void Test_constructor_id_invalid(int id)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(id, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(id, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(),"NL", 2023));
         }
 
         [Theory]
@@ -44,7 +47,8 @@ namespace UnitTestSimulationSolution
         [InlineData("")]
         public void Test_constructor_clientname_invalid(string name)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, name , 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, name , 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -53,7 +57,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-100)]
         public void Test_constructor_minAge_invalid(int minAge)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", minAge, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", minAge, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, 
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -62,7 +67,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-100)]
         public void Test_constructor_maxAge_invalid(int maxAge)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, maxAge, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, maxAge, 1, 1, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -71,7 +77,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-100)]
         public void Test_constructor_randomSeed_invalid(int randomSeed)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, randomSeed, 1, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, randomSeed, 1, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -80,7 +87,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-100)]
         public void Test_constructor_amountOfCust_invalid(int amount)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, amount, 1, 1, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, amount, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -89,14 +97,16 @@ namespace UnitTestSimulationSolution
         [InlineData(101)]
         public void Test_constructor_letterPerc_invalid(int perc)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, perc, DateTime.Now, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, perc, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(),"NL", 2023));
         }
 
         [Fact]
         public void Test_constructor_creationDate_invalid()
         {
             DateTime creationDate = DateTime.Now.AddDays(1);
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, 1, creationDate, 20, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, 1, creationDate, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -104,7 +114,8 @@ namespace UnitTestSimulationSolution
         [InlineData(-1)]       
         public void Test_constructor_averageAgeOG_invalid(int age)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, 1, DateTime.Now, age, null, null, null, "NL", 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 80, 1, 1, 1, 1, DateTime.Now, age, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), "NL", 2023));
         }
 
         [Theory]
@@ -113,7 +124,8 @@ namespace UnitTestSimulationSolution
         [InlineData("")]
         public void Test_constructor_country_invalid(string country)
         {
-            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null, country, 2023));
+            Assert.Throws<SimulationException>(() => new SimulationInformation(1, "Dummy", 1, 100, 1, 1, 1, 1, DateTime.Now, 20, null, null, null,
+                new Dictionary<string, Dictionary<string, int>>(), country, 2023));
         }
 
         

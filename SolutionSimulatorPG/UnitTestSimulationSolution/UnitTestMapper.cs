@@ -16,7 +16,7 @@ namespace UnitTestSimulationSolution
         {
             // We create a SimulationInformation object         
             var sourceData = new SimulationInformation(99, "Test Company", 18, 80, 12345,500, 100, 10, DateTime.Now, 35, new Dictionary<string, int>(), 
-                new Dictionary<string, int>(), new Dictionary<string, int>(), "Netherlands", 2023);
+                new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, Dictionary<string, int>>() , "Netherlands", 2023);
 
             var result = DTOMapper.MapToConciseStatistics(sourceData);
 

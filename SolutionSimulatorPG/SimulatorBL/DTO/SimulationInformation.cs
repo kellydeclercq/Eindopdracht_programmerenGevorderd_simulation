@@ -132,6 +132,8 @@ namespace SimulatorBL.DTO
         public Dictionary<string, int> MunicipalityPerc { get; set; }
         public Dictionary<string, int> StreetsPerMunicipality { get; set; } // key is municipality, value amount of streets
         public Dictionary<string, int> ClientsPerMunicipality { get; set; } // key is municipality, value amount of clients
+        public Dictionary<string, Dictionary<string, int>> NameOccurences { get; set; }
+
         public string Country 
         { get => _country;
             set
@@ -154,7 +156,8 @@ namespace SimulatorBL.DTO
 
         public SimulationInformation(int id, string clientName, int minAge, int maxAge, int randomSeed, int amountOfCust, int maxHouseNr, 
             int houseNumberLetterPercentage, DateTime creationDate, int averageAgeOriginal, Dictionary<string, int> municipalityPerc, 
-            Dictionary<string, int> streetsPerMunicipality, Dictionary<string, int> clientsPerMunicipality, string country, int year)
+            Dictionary<string, int> streetsPerMunicipality, Dictionary<string, int> clientsPerMunicipality, 
+            Dictionary<string, Dictionary<string, int>> nameOccurences, string country, int year)
         {
             Id = id;
             ClientName = clientName;
@@ -171,6 +174,7 @@ namespace SimulatorBL.DTO
             ClientsPerMunicipality = clientsPerMunicipality;
             Country = country;
             Year = year;
+            NameOccurences = nameOccurences;
         }
       
     }
